@@ -9,10 +9,10 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk
 from gi.repository.GdkPixbuf import Pixbuf
 
-NORUN_FLAG = os.path.expanduser("~/.linuxmint/mintwelcome/norun.flag")
+NORUN_FLAG = os.path.expanduser("~/.config/elive-welcome/norun.flag")
 
 # i18n
-gettext.install("mintwelcome", "/usr/share/linuxmint/locale")
+gettext.install("elive-welcome", "/usr/share/locale")
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
@@ -22,33 +22,36 @@ class MintWelcome():
     def __init__(self):
         window = Gtk.Window()
         window.set_title(_("Welcome Screen"))
-        window.set_icon_from_file("/usr/share/linuxmint/logo.png")
+        window.set_icon_from_file("/usr/share/icons/gnome/256x256/apps/logo-elive.png")
         window.set_position(Gtk.WindowPosition.CENTER)
         window.connect("destroy", Gtk.main_quit)
 
-        with open("/etc/linuxmint/info") as f:
-            config = dict([line.strip().split("=") for line in f])
+# FIXME: the "dict" part throws an error, so I have hardcoded it until there's a python magician around that can make it working :)
+# Note: we also don't have / use this file, but we need it in a dynamic way so we should use /etc/elive-version instead
+        # with open("/etc/linuxmint/info") as f:
+            # config = dict([line.strip().split("=") for line in f])
 
-        codename = config['CODENAME'].capitalize()
-        edition = config['EDITION']
-        release = config['RELEASE']
-        desktop = config['DESKTOP']
-        self.release_notes = config['RELEASE_NOTES_URL']
-        self.user_guide = "http://www.linuxmint.com/documentation.php"  # Switch to config['USER_GUIDE_URL'] when mintdoc is ready and localized
-        self.new_features = config['NEW_FEATURES_URL']
+        codename = "Elive"
+        # edition = "editiion"
+        release = ""
+        desktop = "Enlightenment"
+        self.release_notes = "http://www.elivecd.org/news/"
+        self.user_guide = "http://www.elivecd.org/faq/"
+        self.new_features = "http://www.elivecd.org/"
 
         # distro-specific
         self.is_lmde = False
-        self.dist_name = "Linux Mint"
+        self.dist_name = "Elive"
+# XXX
         self.codec_pkg_name = "mint-meta-codecs"
 
-        if os.path.exists("/usr/share/doc/debian-system-adjustments/copyright"):
-            self.is_lmde = True
-            self.dist_name = "LMDE"
-            self.codec_pkg_name = "mint-meta-debian-codecs"
-        else:
-            if "KDE" in desktop:
-                self.codec_pkg_name = "mint-meta-codecs-kde"
+        # if os.path.exists("/usr/share/doc/debian-system-adjustments/copyright"):
+            # self.is_lmde = True
+            # self.dist_name = "LMDE"
+            # self.codec_pkg_name = "mint-meta-debian-codecs"
+        # else:
+            # if "KDE" in desktop:
+                # self.codec_pkg_name = "mint-meta-codecs-kde"
 
         bgcolor = Gdk.RGBA()
         bgcolor.parse("rgba(0,0,0,0)")
@@ -71,27 +74,27 @@ class MintWelcome():
         headerbox = Gtk.VBox()
         logo = Gtk.Image()
 
-        logo.set_from_file("/usr/share/linuxmint/mintwelcome/icons/logo_header.png")
+        logo.set_from_file("/usr/share/icons/gnome/48x48/apps/logo-elive.png")
 
         headerbox.pack_start(logo, False, False, 0)
-        label = Gtk.Label()
+        # label = Gtk.Label()
 
-        label.set_markup("<span font='12.5' fgcolor='#3e3e3e'>%s %s '<span fgcolor='#709937'>%s</span>'</span>" % (self.dist_name, release, codename))
+        # label.set_markup("<span font='12.5' fgcolor='#3e3e3e'>%s %s '<span fgcolor='#709937'>%s</span>'</span>" % (self.dist_name, release, codename))
 
-        headerbox.pack_start(label, False, False, 0)
+        # headerbox.pack_start(label, False, False, 0)
         label = Gtk.Label()
-        label.set_markup("<span font='8' fgcolor='#3e3e3e'><i>%s</i></span>" % edition)
+        # label.set_markup("<span font='8' fgcolor='#3e3e3e'><i>%s</i></span>" % edition)
         headerbox.pack_start(label, False, False, 2)
         vbox.pack_start(headerbox, False, False, 10)
 
         welcome_label = Gtk.Label()
-        welcome_message = _("Welcome and thank you for choosing Linux Mint. We hope you'll enjoy using it as much as we did designing it. The links below will help you get started with your new operating system. Have a great time and don't hesitate to send us your feedback.")
+        welcome_message = _("Welcome and thank you for choosing Elive. We hope you'll enjoy using it as much as we did designing it. This operating system aims to be simple and intuitive but it hides thousands of features and secrets. The links below will help you to get started with your new operating system. Now it's time to fly!")
         welcome_label.set_markup("<span font='9' fgcolor='#3e3e3e'>%s</span>" % welcome_message)
         welcome_label.set_line_wrap(True)
         vbox.pack_start(welcome_label, False, False, 10)
 
         separator = Gtk.Image()
-        separator.set_from_file('/usr/share/linuxmint/mintwelcome/icons/separator.png')
+        separator.set_from_file('/usr/share/elive-welcome/icons/separator.png')
         vbox.pack_start(separator, False, False, 10)
 
         liststore = Gtk.ListStore(Pixbuf, str, str, str, Pixbuf, Pixbuf)
@@ -134,37 +137,37 @@ class MintWelcome():
             if self.is_lmde:
                 actions.append(['new_features', _("New features"), _("See what is new in this release")])
 
-            actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Linux Mint")])
+            actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
             actions.append(['software', _("Apps"), _("Install additional software")])
 
             if not self.is_lmde:
                 actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
 
             actions.append(['codecs', _("Multimedia codecs"), _("Add all the missing multimedia codecs")])
-            actions.append(['forums', _("Forums"), _("Seek help from other users in the Linux Mint forums")])
+            actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
             actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
-            actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Linux Mint project")])
-            actions.append(['donors', _("Donations"), _("Make a donation to the Linux Mint project")])
+            actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
+            actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
         else:
             actions.append(['new_features', _("New features"), _("See what is new in this release")])
 
             if self.is_lmde:
                 actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
 
-            actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Linux Mint")])
+            actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
             actions.append(['software', _("Apps"), _("Install additional software")])
 
             if not self.is_lmde:
                 actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
 
-            actions.append(['forums', _("Forums"), _("Seek help from other users in the Linux Mint forums")])
+            actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
             actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
-            actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Linux Mint project")])
-            actions.append(['donors', _("Donations"), _("Make a donation to the Linux Mint project")])
+            actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
+            actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
 
         for action in actions:
-            desat_pixbuf = Pixbuf.new_from_file('/usr/share/linuxmint/mintwelcome/icons/desat/%s.png' % action[0])
-            color_pixbuf = Pixbuf.new_from_file('/usr/share/linuxmint/mintwelcome/icons/color/%s.png' % action[0])
+            desat_pixbuf = Pixbuf.new_from_file('/usr/share/elive-welcome/icons/desat/%s.png' % action[0])
+            color_pixbuf = Pixbuf.new_from_file('/usr/share/elive-welcome/icons/color/%s.png' % action[0])
             pixbuf = desat_pixbuf
             liststore.append([pixbuf, action[0], action[1], action[2], desat_pixbuf, color_pixbuf])
 
@@ -227,7 +230,7 @@ class MintWelcome():
             if os.path.exists(NORUN_FLAG):
                 os.system("rm -rf %s" % NORUN_FLAG)
         else:
-            os.system("mkdir -p ~/.linuxmint/mintwelcome")
+            os.system("mkdir -p ~/.config/elive-welcome")
             os.system("touch %s" % NORUN_FLAG)
 
     def on_mouse_click(self, widget, event):
@@ -242,7 +245,7 @@ class MintWelcome():
         value = view.get_model().get_value(treeiter, 1)
 
         if value == "chatroom":
-            os.system("xdg-open irc://irc.spotchat.org/linuxmint-help")
+            os.system("xdg-open irc://irc.freenode.net/elive")
         elif value == "restore_data":
             if os.path.exists("/usr/bin/mintbackup"):
                 os.system("/usr/bin/mintbackup &")
@@ -253,11 +256,11 @@ class MintWelcome():
         elif value == "user_guide":
             os.system("xdg-open %s &" % self.user_guide)
         elif value == "forums":
-            os.system("xdg-open http://forums.linuxmint.com &")
-        elif value == "tutorials":
-            os.system("xdg-open http://community.linuxmint.com/tutorial &")
-        elif value == "ideas":
-            os.system("xdg-open http://community.linuxmint.com/idea &")
+            os.system("xdg-open http://forum.elivecd.org &")
+        # elif value == "tutorials":
+            # os.system("xdg-open http://forum.elivecd.org/tutorial &")
+        # elif value == "ideas":
+            # os.system("xdg-open http://community.linuxmint.com/idea &")
         elif value == "software":
             os.system("mintinstall &")
         elif value == "driver":
