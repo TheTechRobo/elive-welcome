@@ -40,18 +40,8 @@ class EliveWelcome():
         self.new_features = "http://www.elivecd.org/"
 
         # distro-specific
-        self.is_lmde = False
         self.dist_name = "Elive"
-# XXX
-        self.codec_pkg_name = "mint-meta-codecs"
 
-        # if os.path.exists("/usr/share/doc/debian-system-adjustments/copyright"):
-            # self.is_lmde = True
-            # self.dist_name = "LMDE"
-            # self.codec_pkg_name = "mint-meta-debian-codecs"
-        # else:
-            # if "KDE" in desktop:
-                # self.codec_pkg_name = "mint-meta-codecs-kde"
 
         bgcolor = Gdk.RGBA()
         bgcolor.parse("rgba(0,0,0,0)")
@@ -108,6 +98,7 @@ class EliveWelcome():
         self.iconview.set_text_column(2)
         self.iconview.set_tooltip_column(3)
         self.iconview.set_columns(4)
+        # self.iconview.set_columns(5)
         self.iconview.set_margin(0)
         self.iconview.set_spacing(6)
         self.iconview.set_item_padding(3)
@@ -122,48 +113,34 @@ class EliveWelcome():
 
         actions = []
 
-        add_codecs = False
-
-        import apt
-        cache = apt.Cache()
-        if self.codec_pkg_name in cache:
-            pkg = cache[self.codec_pkg_name]
-            if not pkg.is_installed:
-                add_codecs = True
 
         self.last_selected_path = None
 
-        if add_codecs:
-            if self.is_lmde:
-                actions.append(['new_features', _("New features"), _("See what is new in this release")])
+        # actions.append(['new_features', _("New features"), _("See what is new in this release")])
+        actions.append(['new_features', _("Install Elive"), _("Launch the Elive Installer and start enjoying for real this amazing system")])
 
-            actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
-            actions.append(['software', _("Apps"), _("Install additional software")])
+        actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
+        actions.append(['software', _("Apps"), _("Install additional software")])
 
-            if not self.is_lmde:
-                actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
+        actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
 
-            actions.append(['codecs', _("Multimedia codecs"), _("Add all the missing multimedia codecs")])
-            actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
-            actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
-            actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
-            actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
-        else:
-            actions.append(['new_features', _("New features"), _("See what is new in this release")])
+        # actions.append(['codecs', _("Multimedia codecs"), _("Add all the missing multimedia codecs")])
+        actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
+        actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
+        actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
+        actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
 
-            if self.is_lmde:
-                actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
+        actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
 
-            actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
-            actions.append(['software', _("Apps"), _("Install additional software")])
+        actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
+        actions.append(['software', _("Apps"), _("Install additional software")])
 
-            if not self.is_lmde:
-                actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
+        actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
 
-            actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
-            actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
-            actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
-            actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
+        actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
+        actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
+        actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
+        actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
 
         for action in actions:
             desat_pixbuf = Pixbuf.new_from_file('/usr/share/elive-welcome/icons/desat/%s.png' % action[0])
@@ -249,8 +226,11 @@ class EliveWelcome():
         elif value == "restore_data":
             if os.path.exists("/usr/bin/mintbackup"):
                 os.system("/usr/bin/mintbackup &")
+        # elif value == "new_features":
+            # os.system("xdg-open %s &" % self.new_features)
+        # NOTE: we use new_features instead of installer_run because it has already a nice icon, so we can change the icon name from this ID
         elif value == "new_features":
-            os.system("xdg-open %s &" % self.new_features)
+            os.system("echo sudo eliveinstaller &")
         elif value == "release_notes":
             os.system("xdg-open %s &" % self.release_notes)
         elif value == "user_guide":
@@ -273,8 +253,6 @@ class EliveWelcome():
             os.system("xdg-open http://www.linuxmint.com/sponsors.php &")
         elif value == "donors":
             os.system("xdg-open http://www.linuxmint.com/donors.php &")
-        elif value == "codecs":
-            os.system("xdg-open apt://%s?refresh=yes &" % self.codec_pkg_name)
 
 if __name__ == "__main__":
     EliveWelcome()
