@@ -97,7 +97,7 @@ class EliveWelcome():
         self.iconview.set_pixbuf_column(0)
         self.iconview.set_text_column(2)
         self.iconview.set_tooltip_column(3)
-        self.iconview.set_columns(4)
+        self.iconview.set_columns(6)
         # self.iconview.set_columns(5)
         self.iconview.set_margin(0)
         self.iconview.set_spacing(6)
