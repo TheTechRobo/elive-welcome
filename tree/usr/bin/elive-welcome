@@ -2,4 +2,4 @@
 
 import os
 
-os.system("/usr/lib/linuxmint/mintwelcome/mintwelcome.py")
+os.system("/usr/lib/elive-welcome/elive-welcome.py")

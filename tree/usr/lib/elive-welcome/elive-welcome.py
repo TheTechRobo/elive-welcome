@@ -17,7 +17,7 @@ gettext.install("elive-welcome", "/usr/share/locale")
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 
-class MintWelcome():
+class EliveWelcome():
 
     def __init__(self):
         window = Gtk.Window()
@@ -277,5 +277,5 @@ class MintWelcome():
             os.system("xdg-open apt://%s?refresh=yes &" % self.codec_pkg_name)
 
 if __name__ == "__main__":
-    MintWelcome()
+    EliveWelcome()
     Gtk.main()
