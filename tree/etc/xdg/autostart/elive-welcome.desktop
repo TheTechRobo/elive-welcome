@@ -1,9 +1,9 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=mintwelcome
-Comment=Linux Mint Welcome Screen
+Name=Elive Welcome
+Comment=Elive Welcome Screen
 Icon=gnome-info
-Exec=mintwelcome-launcher
+Exec=elive-welcome-launcher
 Terminal=false
 Type=Application
 Categories=
