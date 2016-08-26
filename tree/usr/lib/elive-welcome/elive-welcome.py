@@ -22,7 +22,7 @@ class EliveWelcome():
     def __init__(self):
         window = Gtk.Window()
         window.set_title(_("Welcome Screen"))
-        window.set_icon_from_file("/usr/share/icons/gnome/256x256/apps/logo-elive.png")
+        window.set_icon_from_file("/usr/share/elive-welcome/icons/logo.png")
         window.set_position(Gtk.WindowPosition.CENTER)
         window.connect("destroy", Gtk.main_quit)
 
@@ -64,7 +64,7 @@ class EliveWelcome():
         headerbox = Gtk.VBox()
         logo = Gtk.Image()
 
-        logo.set_from_file("/usr/share/icons/gnome/48x48/apps/logo-elive.png")
+        logo.set_from_file("/usr/share/elive-welcome/icons/logo.png")
 
         headerbox.pack_start(logo, False, False, 0)
         # label = Gtk.Label()
@@ -137,9 +137,7 @@ class EliveWelcome():
 
         actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
 
-        actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
         actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
-        actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
         actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
 
         for action in actions:
@@ -148,17 +146,18 @@ class EliveWelcome():
             pixbuf = desat_pixbuf
             liststore.append([pixbuf, action[0], action[1], action[2], desat_pixbuf, color_pixbuf])
 
-        hbox = Gtk.HBox()
-        hbox.set_border_width(6)
-        main_box.pack_end(hbox, False, False, 0)
-        checkbox = Gtk.CheckButton()
-        checkbox.set_label(_("Show this dialog at startup"))
+# Disabled checkbox for launch at every start, so we want this only in live mode and so its useless
+        # hbox = Gtk.HBox()
+        # hbox.set_border_width(6)
+        # main_box.pack_end(hbox, False, False, 0)
+        # checkbox = Gtk.CheckButton()
+        # checkbox.set_label(_("Show this dialog at startup"))
 
-        if not os.path.exists(NORUN_FLAG):
-            checkbox.set_active(True)
+        # if not os.path.exists(NORUN_FLAG):
+            # checkbox.set_active(True)
 
-        checkbox.connect("toggled", self.on_button_toggled)
-        hbox.pack_end(checkbox, False, False, 2)
+        # checkbox.connect("toggled", self.on_button_toggled)
+        # hbox.pack_end(checkbox, False, False, 2)
 
         window.add(main_box)
         window.set_default_size(540, 420)
@@ -223,9 +222,9 @@ class EliveWelcome():
 
         if value == "chatroom":
             os.system("xdg-open irc://irc.freenode.net/elive")
-        elif value == "restore_data":
-            if os.path.exists("/usr/bin/mintbackup"):
-                os.system("/usr/bin/mintbackup &")
+        # elif value == "restore_data":
+            # if os.path.exists("/usr/bin/mintbackup"):
+                # os.system("/usr/bin/mintbackup &")
         # elif value == "new_features":
             # os.system("xdg-open %s &" % self.new_features)
         # NOTE: we use new_features instead of installer_run because it has already a nice icon, so we can change the icon name from this ID
@@ -248,7 +247,7 @@ class EliveWelcome():
         elif value == "hardware":
             os.system("xdg-open http://community.linuxmint.com/hardware &")
         elif value == "get_involved":
-            os.system("xdg-open http://www.linuxmint.com/getinvolved.php &")
+            os.system("xdg-open http://www.github.com/Elive &")
         elif value == "sponsors":
             os.system("xdg-open http://www.linuxmint.com/sponsors.php &")
         elif value == "donors":
