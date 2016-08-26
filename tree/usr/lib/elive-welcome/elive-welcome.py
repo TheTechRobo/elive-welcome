@@ -9,7 +9,7 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk
 from gi.repository.GdkPixbuf import Pixbuf
 
-NORUN_FLAG = os.path.expanduser("~/.config/elive-welcome/norun.flag")
+# NORUN_FLAG = os.path.expanduser("~/.config/elive-welcome/norun.flag")
 
 # i18n
 gettext.install("elive-welcome", "/usr/share/locale")
@@ -116,29 +116,32 @@ class EliveWelcome():
 
         self.last_selected_path = None
 
+        # TODO / wishes:
+        # release notes
+        # user guide
+        # hotkeys
+
         # actions.append(['new_features', _("New features"), _("See what is new in this release")])
         actions.append(['new_features', _("Install Elive"), _("Launch the Elive Installer and start enjoying for real this amazing system")])
 
-        actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
-        actions.append(['software', _("Apps"), _("Install additional software")])
+        # actions.append(['software', _("Apps"), _("Install additional software")])
 
-        actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
+        # actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
 
         # actions.append(['codecs', _("Multimedia codecs"), _("Add all the missing multimedia codecs")])
-        actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
         actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
+        actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
         actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
+        # actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
+        actions.append(['user_guide', _("Issues"), _("Report an issue so we can solve it")])
+        actions.append(['subscribe', _("Subscribe"), _("Be notified about Elive releases or other topics")])
         actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
 
         actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
 
-        actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
-        actions.append(['software', _("Apps"), _("Install additional software")])
 
         actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
 
-        actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
-        actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
 
         for action in actions:
             desat_pixbuf = Pixbuf.new_from_file('/usr/share/elive-welcome/icons/desat/%s.png' % action[0])
@@ -201,13 +204,13 @@ class EliveWelcome():
             widget.get_model().set_value(treeiter, 0, widget.get_model().get_value(treeiter, 4))
             self.last_selected_path = None
 
-    def on_button_toggled(self, button):
-        if button.get_active():
-            if os.path.exists(NORUN_FLAG):
-                os.system("rm -rf %s" % NORUN_FLAG)
-        else:
-            os.system("mkdir -p ~/.config/elive-welcome")
-            os.system("touch %s" % NORUN_FLAG)
+    # def on_button_toggled(self, button):
+        # if button.get_active():
+            # if os.path.exists(NORUN_FLAG):
+                # os.system("rm -rf %s" % NORUN_FLAG)
+        # else:
+            # os.system("mkdir -p ~/.config/elive-welcome")
+            # os.system("touch %s" % NORUN_FLAG)
 
     def on_mouse_click(self, widget, event):
         if event.type == Gdk.EventType.BUTTON_PRESS:
@@ -221,7 +224,7 @@ class EliveWelcome():
         value = view.get_model().get_value(treeiter, 1)
 
         if value == "chatroom":
-            os.system("xdg-open irc://irc.freenode.net/elive")
+            os.system("xchat &")
         # elif value == "restore_data":
             # if os.path.exists("/usr/bin/mintbackup"):
                 # os.system("/usr/bin/mintbackup &")
@@ -229,11 +232,13 @@ class EliveWelcome():
             # os.system("xdg-open %s &" % self.new_features)
         # NOTE: we use new_features instead of installer_run because it has already a nice icon, so we can change the icon name from this ID
         elif value == "new_features":
-            os.system("echo sudo eliveinstaller &")
-        elif value == "release_notes":
-            os.system("xdg-open %s &" % self.release_notes)
+            os.system("sudo eliveinstaller &")
+        # elif value == "release_notes":
+            # os.system("xdg-open %s &" % self.release_notes)
         elif value == "user_guide":
-            os.system("xdg-open %s &" % self.user_guide)
+            os.system("xdg-open http://bugs.elivecd.org &")
+        elif value == "subscribe":
+            os.system("xdg-open http://www.elivecd.org/subscribe/ &")
         elif value == "forums":
             os.system("xdg-open http://forum.elivecd.org &")
         # elif value == "tutorials":
@@ -241,17 +246,17 @@ class EliveWelcome():
         # elif value == "ideas":
             # os.system("xdg-open http://community.linuxmint.com/idea &")
         elif value == "software":
-            os.system("mintinstall &")
-        elif value == "driver":
-            os.system("mintdrivers &")
-        elif value == "hardware":
-            os.system("xdg-open http://community.linuxmint.com/hardware &")
+            os.system("sudo synaptic &")
+        # elif value == "driver":
+            # os.system("mintdrivers &")
+        # elif value == "hardware":
+            # os.system("xdg-open http://community.linuxmint.com/hardware &")
         elif value == "get_involved":
             os.system("xdg-open http://www.github.com/Elive &")
-        elif value == "sponsors":
-            os.system("xdg-open http://www.linuxmint.com/sponsors.php &")
+        # elif value == "sponsors":
+            # os.system("xdg-open http://www.linuxmint.com/sponsors.php &")
         elif value == "donors":
-            os.system("xdg-open http://www.linuxmint.com/donors.php &")
+            os.system("xdg-open http://www.elivecd.org/donate &")
 
 if __name__ == "__main__":
     EliveWelcome()
