@@ -140,20 +140,20 @@ class EliveWelcome():
         # actions.append(['software', _("Apps"), _("Install additional software")])
 
         # actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
+        actions.append(['translate', _("Translate Elive"), _("Help us to translate Elive to your language or also to improve the english sentences")])
+        actions.append(['subscribe', _("Subscribe"), _("Be notified about Elive releases or other topics")])
+        actions.append(['donors', _("Donate"), _("Make a donation to the Elive project")])
 
         actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
         actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
         actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
-        actions.append(['translate', _("Translate Elive"), _("Help us to translate Elive to your language or also to improve the english sentences")])
         # actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
         actions.append(['user_guide', _("Issues"), _("Report an issue so we can solve it")])
-        actions.append(['subscribe', _("Subscribe"), _("Be notified about Elive releases or other topics")])
-        actions.append(['donors', _("Donations"), _("Make a donation to the Elive project")])
 
-        actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
+        # actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
 
 
-        actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
+        # actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
         actions.append(['codecs', _("Media Center"), _("Run an amazing media center to play movies, music, or a lot of other things")])
         actions.append(['office', _("Office"), _("Launch the office suite")])
         actions.append(['penguins', _("Penguins"), _("Look at those penguins!")])
@@ -272,10 +272,10 @@ class EliveWelcome():
             os.system("libreoffice &")
 
         elif value == "penguins":
-            os.system("if el_flag check emodule_loaded_penguins ; then enlightenment_remote -module-disable penguins ; enlightenment_remote -module-unload penguins ; el_flag remove emodule_loaded_penguins ;   else enlightenment_remote -module-load penguins ; enlightenment_remote -module-enable penguins ; el_flag add emodule_loaded_penguins ; fi")
+            os.system("if test -e /tmp/.emodule_loaded_penguins ; then enlightenment_remote -module-disable penguins ; enlightenment_remote -module-unload penguins ; rm -f /tmp/.emodule_loaded_penguins ;   else enlightenment_remote -module-load penguins ; enlightenment_remote -module-enable penguins ; touch /tmp/.emodule_loaded_penguins ; chmod a+w /tmp/.emodule_loaded_penguins ; fi")
 
         elif value == "compiz":
-            os.system("if el_flag check emodule_loaded_ecomorph ; then enlightenment_remote -module-disable ecomorph ; enlightenment_remote -module-unload ecomorph ; el_flag remove emodule_loaded_ecomorph ;   else enlightenment_remote -module-load ecomorph ; enlightenment_remote -module-enable ecomorph ; el_flag add emodule_loaded_ecomorph ; fi")
+            os.system("if test -e /tmp/.emodule_loaded_ecomorph ; then enlightenment_remote -module-disable ecomorph ; enlightenment_remote -module-unload ecomorph ; rm -f /tmp/.emodule_loaded_ecomorph ;   else enlightenment_remote -module-load ecomorph ; enlightenment_remote -module-enable ecomorph ; touch /tmp/.emodule_loaded_ecomorph ; chmod a+w /tmp/.emodule_loaded_ecomorph ; fi")
 
         # elif value == "driver":
             # os.system("mintdrivers &")
