@@ -141,11 +141,11 @@ class EliveWelcome():
 
         # actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
         actions.append(['translate', _("Translate Elive"), _("Help us to translate Elive to your language or also to improve the english sentences")])
-        actions.append(['subscribe', _("Subscribe"), _("Be notified about Elive releases or other topics")])
-        actions.append(['donors', _("Donate"), _("Make a donation to the Elive project")])
 
         actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
         actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
+        actions.append(['subscribe', _("Subscribe"), _("Be notified about Elive releases or other topics")])
+        actions.append(['donors', _("Donate"), _("Make a donation to the Elive project")])
         actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
         # actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
         actions.append(['user_guide', _("Issues"), _("Report an issue so we can solve it")])
