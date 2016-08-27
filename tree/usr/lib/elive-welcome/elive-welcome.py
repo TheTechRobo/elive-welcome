@@ -154,7 +154,7 @@ class EliveWelcome():
 
 
         # actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
-        actions.append(['codecs', _("Media Center"), _("Run an amazing media center to play movies, music, or a lot of other things")])
+        # actions.append(['codecs', _("Media Center"), _("Run an amazing media center to play movies, music, or a lot of other things")])
         actions.append(['office', _("Office"), _("Launch the office suite")])
         actions.append(['penguins', _("Penguins"), _("Look at those penguins!")])
         actions.append(['compiz', _("Compiz"), _("Do you want to try a Compiz experience?")])
