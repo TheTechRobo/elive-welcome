@@ -148,7 +148,7 @@ class EliveWelcome():
         actions.append(['donors', _("Please Donate"), _("Make a donation to the Elive project")])
         actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
         # actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
-        actions.append(['user_guide', _("Issues"), _("Report an issue so we can solve it")])
+        actions.append(['issues', _("Issues"), _("Report an issue so we can solve it")])
 
         # actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
 
@@ -158,6 +158,7 @@ class EliveWelcome():
         actions.append(['office', _("Office"), _("Launch the office suite")])
         actions.append(['penguins', _("Penguins"), _("Look at those penguins!")])
         actions.append(['compiz', _("Compiz"), _("Do you want to try a Compiz experience?")])
+        actions.append(['help_compiz', _("Help Compiz!"), _("Help us to fix a bug on it so we can include it on the stable version of Elive")])
 
 
         for action in actions:
@@ -254,7 +255,7 @@ class EliveWelcome():
             os.system("eltrans &")
         # elif value == "release_notes":
             # os.system("xdg-open %s &" % self.release_notes)
-        elif value == "user_guide":
+        elif value == "issues":
             os.system("xdg-open http://bugs.elivecd.org &")
         elif value == "subscribe":
             os.system("xdg-open http://www.elivecd.org/subscribe/ &")
@@ -277,11 +278,15 @@ class EliveWelcome():
         elif value == "compiz":
             os.system("if test -e /tmp/.emodule_loaded_ecomorph ; then enlightenment_remote -module-disable ecomorph ; enlightenment_remote -module-unload ecomorph ; rm -f /tmp/.emodule_loaded_ecomorph ;   else enlightenment_remote -module-load ecomorph ; enlightenment_remote -module-enable ecomorph ; touch /tmp/.emodule_loaded_ecomorph ; chmod a+w /tmp/.emodule_loaded_ecomorph ; fi")
 
+        elif value == "help_compiz":
+            help_compiz_message = _("Compiz effects (ecomorph) has a bug that makes it pretty unusable, but we want to include it for the stable version, can you help us to solve this error? (requirements: C programming skills). Note: we suggest you to contact Thanatermesis after to do a look to the problem")
+            os.system("zenity --question --text='%s' &" % help_compiz_message)
+
         # elif value == "driver":
             # os.system("mintdrivers &")
         # elif value == "hardware":
             # os.system("xdg-open http://community.linuxmint.com/hardware &")
-        elif value == "get_involved":
+        elif value == "issues":
             os.system("xdg-open http://www.github.com/Elive &")
         # elif value == "sponsors":
             # os.system("xdg-open http://www.linuxmint.com/sponsors.php &")
