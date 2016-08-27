@@ -159,6 +159,7 @@ class EliveWelcome():
         actions.append(['penguins', _("Penguins"), _("Look at those penguins!")])
         actions.append(['compiz', _("Compiz"), _("Do you want to try a Compiz experience?")])
         actions.append(['help_compiz', _("Help Compiz!"), _("Help us to fix a bug on it so we can include it on the stable version of Elive")])
+        actions.append(['help_wikipedia', _("Help Wikipedia!"), _("Help us to have our Elive entry in the Wikipedia")])
 
 
         for action in actions:
@@ -281,6 +282,9 @@ class EliveWelcome():
         elif value == "help_compiz":
             help_compiz_message = _("Compiz effects (ecomorph) has a bug that makes it unusable, but we want to include it for the stable version, can you help us to solve this problem? (requirements: C programming skills). Note: we suggest you to contact Thanatermesis after to do a look to the issue")
             os.system("if zenity --question --text='%s' ; then xdg-open http://www.github.com/Elive/ecomorph/issues ; fi &" % help_compiz_message)
+
+        elif value == "help_wikipedia":
+            os.system("xdg-open http://en.wikipedia.org/wiki/Elive")
 
         # elif value == "driver":
             # os.system("mintdrivers &")
