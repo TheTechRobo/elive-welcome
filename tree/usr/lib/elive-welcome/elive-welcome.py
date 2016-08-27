@@ -279,7 +279,7 @@ class EliveWelcome():
             os.system("if test -e /tmp/.emodule_loaded_ecomorph ; then enlightenment_remote -module-disable ecomorph ; enlightenment_remote -module-unload ecomorph ; rm -f /tmp/.emodule_loaded_ecomorph ;   else enlightenment_remote -module-load ecomorph ; enlightenment_remote -module-enable ecomorph ; touch /tmp/.emodule_loaded_ecomorph ; chmod a+w /tmp/.emodule_loaded_ecomorph ; fi")
 
         elif value == "help_compiz":
-            help_compiz_message = _("Compiz effects (ecomorph) has a bug that makes it pretty unusable, but we want to include it for the stable version, can you help us to solve this error? (requirements: C programming skills). Note: we suggest you to contact Thanatermesis after to do a look to the problem")
+            help_compiz_message = _("Compiz effects (ecomorph) has a bug that makes it unusable, but we want to include it for the stable version, can you help us to solve this problem? (requirements: C programming skills). Note: we suggest you to contact Thanatermesis after to do a look to the issue")
             os.system("if zenity --question --text='%s' ; then xdg-open http://www.github.com/Elive/ecomorph/issues ; fi &" % help_compiz_message)
 
         # elif value == "driver":
