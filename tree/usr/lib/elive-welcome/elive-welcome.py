@@ -142,13 +142,13 @@ class EliveWelcome():
         # actions.append(['driver', _("Drivers"), _("Install hardware drivers")])
         actions.append(['translate', _("Translate Elive"), _("Help us to translate Elive to your language or also to improve the english sentences")])
 
-        actions.append(['chatroom', _("Chat room"), _("Chat live with other users in the chat room")])
+        actions.append(['chatroom', _("Chat"), _("Chat live with other users in the chat room")])
         actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
+        actions.append(['issues', _("Issues"), _("Report an issue so we can solve it")])
         actions.append(['subscribe', _("Be Notified"), _("Be notified about Elive releases or other topics")])
         actions.append(['donors', _("Please Donate"), _("Make a donation to the Elive project")])
         actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
         # actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
-        actions.append(['issues', _("Issues"), _("Report an issue so we can solve it")])
 
         # actions.append(['release_notes', _("Release notes"), _("Read the release notes")])
 
@@ -280,7 +280,7 @@ class EliveWelcome():
 
         elif value == "help_compiz":
             help_compiz_message = _("Compiz effects (ecomorph) has a bug that makes it pretty unusable, but we want to include it for the stable version, can you help us to solve this error? (requirements: C programming skills). Note: we suggest you to contact Thanatermesis after to do a look to the problem")
-            os.system("zenity --question --text='%s' &" % help_compiz_message)
+            os.system("if zenity --question --text='%s' ; then xdg-open http://www.github.com/Elive/ecomorph/issues ; fi &" % help_compiz_message)
 
         # elif value == "driver":
             # os.system("mintdrivers &")
