@@ -274,7 +274,7 @@ class EliveWelcome():
             os.system("libreoffice &")
 
         elif value == "penguins":
-            os.system("if test -e /tmp/.emodule_loaded_penguins ; then enlightenment_remote -module-disable penguins ; enlightenment_remote -module-unload penguins ; rm -f /tmp/.emodule_loaded_penguins ;   else enlightenment_remote -module-load penguins ; enlightenment_remote -module-enable penguins ; touch /tmp/.emodule_loaded_penguins ; chmod a+w /tmp/.emodule_loaded_penguins ; fi")
+            os.system("if test -e /tmp/.emodule_loaded_penguins ; then zenity --info --text='Note: if you see an error, just press F1 in your keyboard' ; enlightenment_remote -module-disable penguins ; enlightenment_remote -module-unload penguins ; rm -f /tmp/.emodule_loaded_penguins ;   else enlightenment_remote -module-load penguins ; enlightenment_remote -module-enable penguins ; touch /tmp/.emodule_loaded_penguins ; chmod a+w /tmp/.emodule_loaded_penguins ; fi")
 
         elif value == "compiz":
             os.system("if test -e /tmp/.emodule_loaded_ecomorph ; then enlightenment_remote -module-disable ecomorph ; enlightenment_remote -module-unload ecomorph ; rm -f /tmp/.emodule_loaded_ecomorph ;   else enlightenment_remote -module-load ecomorph ; enlightenment_remote -module-enable ecomorph ; touch /tmp/.emodule_loaded_ecomorph ; chmod a+w /tmp/.emodule_loaded_ecomorph ; fi")
