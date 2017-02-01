@@ -146,7 +146,7 @@ class EliveWelcome():
         actions.append(['forums', _("Forums"), _("Seek help from other users in the Elive forums")])
         actions.append(['issues', _("Issues"), _("Report an issue so we can solve it")])
         actions.append(['subscribe', _("Be Notified"), _("Be notified about Elive releases or other topics")])
-        actions.append(['donors', _("Please Donate"), _("Make a donation to the Elive project")])
+        actions.append(['donors', _("Donate"), _("Make a donation to the Elive project")])
         actions.append(['get_involved', _("Getting involved"), _("Find out how to get involved in the Elive project")])
         # actions.append(['user_guide', _("Documentation"), _("Learn all the basics to get started with Elive")])
 
@@ -158,8 +158,8 @@ class EliveWelcome():
         # actions.append(['office', _("Office"), _("Launch the office suite")])
         actions.append(['penguins', _("Penguins"), _("Look at those penguins!")])
         actions.append(['compiz', _("Compiz"), _("Do you want to try a Compiz experience?")])
-        actions.append(['help_compiz', _("Help Compiz!"), _("Help us to fix a bug on it so we can include it on the stable version of Elive")])
-        actions.append(['help_wikipedia', _("Help Wikipedia!"), _("Help us to have our Elive entry in the Wikipedia")])
+        actions.append(['help_compiz', _("Fix Compiz"), _("Help us to fix a bug on it so we can include it on the stable version of Elive")])
+        actions.append(['help_wikipedia', _("Improve Wikipedia"), _("Help us to have our Elive entry in the Wikipedia")])
 
 
         for action in actions:
@@ -259,7 +259,7 @@ class EliveWelcome():
         elif value == "issues":
             os.system("xdg-open http://bugs.elivecd.org &")
         elif value == "subscribe":
-            os.system("xdg-open http://www.elivecd.org/subscribe/ &")
+            os.system("xdg-open http://www.elivecd.org/newsletters/ &")
         elif value == "forums":
             os.system("xdg-open http://forum.elivecd.org &")
         # elif value == "tutorials":
@@ -296,6 +296,8 @@ class EliveWelcome():
             # os.system("xdg-open http://www.linuxmint.com/sponsors.php &")
         elif value == "donors":
             os.system("xdg-open http://www.elivecd.org/donate &")
+        elif value == "get_involved":
+            os.system("xdg-open http://www.elivecd.org/collaborate &")
 
 
 if __name__ == "__main__":
