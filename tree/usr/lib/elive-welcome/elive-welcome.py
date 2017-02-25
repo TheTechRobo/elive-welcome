@@ -158,7 +158,7 @@ class EliveWelcome():
         # actions.append(['office', _("Office"), _("Launch the office suite")])
         actions.append(['penguins', _("Penguins"), _("Look at those penguins!")])
         actions.append(['compiz', _("Compiz"), _("Do you want to try a Compiz experience?")])
-        actions.append(['help_compiz', _("Fix Compiz"), _("Help us to fix a bug on it so we can include it on the stable version of Elive")])
+        actions.append(['help_compiz', _("Improve Compiz"), _("Help us to improve this incredible eye-candy feature and to include it on the stable version of Elive")])
         actions.append(['help_wikipedia', _("Improve Wikipedia"), _("Help us to have our Elive entry in the Wikipedia")])
 
 
@@ -280,7 +280,7 @@ class EliveWelcome():
             os.system("if test -e /tmp/.emodule_loaded_ecomorph ; then enlightenment_remote -module-disable ecomorph ; enlightenment_remote -module-unload ecomorph ; rm -f /tmp/.emodule_loaded_ecomorph ;   else enlightenment_remote -module-load ecomorph ; enlightenment_remote -module-enable ecomorph ; touch /tmp/.emodule_loaded_ecomorph ; chmod a+w /tmp/.emodule_loaded_ecomorph ; fi")
 
         elif value == "help_compiz":
-            help_compiz_message = _("Compiz effects (ecomorph) has a bug that makes it unusable, but we want to include it for the stable version, can you help us to solve this problem? (requirements: C programming skills). Note: we suggest you to contact Thanatermesis after to do a look to the issue")
+            help_compiz_message = _("Compiz effects (ecomorph) has a few minor bugs and improvements needed, you can help us to make it even better, requirements: C programming skills.")
             os.system("if zenity --question --text='%s' ; then xdg-open http://www.github.com/Elive/ecomorph/issues ; fi &" % help_compiz_message)
 
         elif value == "help_wikipedia":
