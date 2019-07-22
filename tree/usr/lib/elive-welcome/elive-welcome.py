@@ -28,12 +28,14 @@ class EliveWelcome():
 
 # FIXME: the "dict" part throws an error, so I have hardcoded it until there's a python magician around that can make it working :)
 # Note: we also don't have / use this file, but we need it in a dynamic way so we should use /etc/elive-version instead
-        # with open("/etc/linuxmint/info") as f:
-            # config = dict([line.strip().split("=") for line in f])
+        with open("/etc/elive-version") as f:
+            config = dict([line.strip().split(":") for line in f])
+#This would create (on my current version) a dictionary thus:
+#{'kernel': ' 4.19.0-5-amd64', 'date-builded': ' 2019-06-26', 'debian-version': ' buster', 'elive-version': ' 3.7.6', 'stable-release': ' no', 'elive-codename': ' alpha'}
 
-        codename = "Elive"
+        codename = config['elive-codename']
         # edition = "editiion"
-        release = ""
+        release = config['elive-version']
         desktop = "Enlightenment"
         self.release_notes = "http://www.elivecd.org/news/"
         self.user_guide = "http://www.elivecd.org/faq/"
