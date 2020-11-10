@@ -28,7 +28,7 @@ class EliveWelcome():
 
 # FIXME: the "dict" part throws an error, so I have hardcoded it until there's a python magician around that can make it working :)
 # Note: we also don't have / use this file, but we need it in a dynamic way so we should use /etc/elive-version instead
-        with open("/etc/elive-version") as f:
+        with open("/etc/elive-version", "r") as f: #I'll need to test this when I'm back at my Elive box
             config = dict([line.strip().split(":") for line in f])
 #This would create (on my current version) a dictionary thus:
 #{'kernel': ' 4.19.0-5-amd64', 'date-builded': ' 2019-06-26', 'debian-version': ' buster', 'elive-version': ' 3.7.6', 'stable-release': ' no', 'elive-codename': ' alpha'}
@@ -120,11 +120,9 @@ class EliveWelcome():
 
         # TODO / wishes:
         # release notes
-        # user guide
-        # hotkeys
+        # hotkeys - TheTechRobo will do later
         # elive tips to best uses / fast usage
         # contact?
-        # FAQ
         # launcher (alt + esc), users needs to know about this feature (and others, hum...)
         #
         # share elive / tweet about it / facebook likes, etc
@@ -134,7 +132,7 @@ class EliveWelcome():
         # compiz!
         # hardware health checker (write a small tool to tutorial and run to the user?)
         # windows applications (photoshop, others), maybe a simple howto explaining how they can be run
-        # xbmc ? FIXME WARNING: can be unstable? mmh... try in real live
+        # xbmc? FIXME WARNING: can be unstable? mmh... try in real live
 
         # actions.append(['new_features', _("New features"), _("See what is new in this release")])
         actions.append(['new_features', _("Install Elive"), _("Launch the Elive Installer and start enjoying for real this amazing system")])
