@@ -121,7 +121,7 @@ class EliveWelcome():
 
         # TODO / wishes:
         # release notes
-        # hotkeys - TheTechRobo will do later
+        # hotkeys
         # elive tips to best uses / fast usage
         # contact?
         # launcher (alt + esc), users needs to know about this feature (and others, hum...)
