@@ -25,11 +25,12 @@ class EliveWelcome():
         window.set_icon_from_file("/usr/share/elive-welcome/icons/logo.png")
         window.set_position(Gtk.WindowPosition.CENTER)
         window.connect("destroy", Gtk.main_quit)
-
-# FIXME: the "dict" part throws an error, so I have hardcoded it until there's a python magician around that can make it working :)
-# Note: we also don't have / use this file, but we need it in a dynamic way so we should use /etc/elive-version instead
+        config = {}
         with open("/etc/elive-version") as f:
-            config = dict([line.strip().split(":") for line in f])
+            for line in f:
+                fixedLine = line.replace(":", "")
+                (key, val) = line.split()
+                d[key] = val
 #This would create (on my current version) a dictionary thus:
 #{'kernel': ' 4.19.0-5-amd64', 'date-builded': ' 2019-06-26', 'debian-version': ' buster', 'elive-version': ' 3.7.6', 'stable-release': ' no', 'elive-codename': ' alpha'}
 
