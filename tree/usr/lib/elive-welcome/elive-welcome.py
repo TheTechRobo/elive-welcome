@@ -133,8 +133,6 @@ class EliveWelcome():
         # share elive / tweet about it / facebook likes, etc
         # learn: make emodules, theme elive, etc...
         #
-        # penguins!
-        # compiz!
         # hardware health checker (write a small tool to tutorial and run to the user?)
         # windows applications (photoshop, others), maybe a simple howto explaining how they can be run
         # xbmc? FIXME WARNING: can be unstable? mmh... try in real live
@@ -164,7 +162,7 @@ class EliveWelcome():
         actions.append(['penguins', _("Penguins"), _("Look at those penguins!")])
         actions.append(['compiz', _("Compiz"), _("Do you want to try a Compiz experience?")])
         actions.append(['help_compiz', _("Improve Compiz"), _("Help us to improve this incredible eye-candy feature and to include it on the stable version of Elive")])
-        actions.append(['help_wikipedia', _("Improve Wikipedia"), _("Help us to have our Elive entry in the Wikipedia")])
+        actions.append(['help_wikipedia', _("Improve Wikipedia Article"), _("Help us to have our Elive entry in the Wikipedia")])
 
 
         for action in actions:
@@ -266,17 +264,17 @@ class EliveWelcome():
         elif value == "subscribe":
             os.system("xdg-open http://www.elivecd.org/newsletters/ &")
         elif value == "forums":
-            os.system("xdg-open http://forum.elivecd.org &")
-        # elif value == "tutorials":
-            # os.system("xdg-open http://forum.elivecd.org/tutorial &")
+            os.system("xdg-open http://forum.elivelinux.org &")
+        elif value == "tutorials":
+            os.system("xdg-open https://forum.elivelinux.org/c/howtos &")
         # elif value == "ideas":
             # os.system("xdg-open http://community.linuxmint.com/idea &")
         elif value == "software":
             os.system("sudo synaptic &")
         elif value == "codecs":
             os.system("xbmc &")
-        elif value == "office":
-            os.system("libreoffice &")
+        # elif value == "office":
+            # os.system("libreoffice &")
 
         elif value == "penguins":
             os.system("if test -e /tmp/.emodule_loaded_penguins ; then zenity --info --text='Note: if you see an error, just press F1 in your keyboard' ; enlightenment_remote -module-disable penguins ; enlightenment_remote -module-unload penguins ; rm -f /tmp/.emodule_loaded_penguins ;   else enlightenment_remote -module-load penguins ; enlightenment_remote -module-enable penguins ; touch /tmp/.emodule_loaded_penguins ; chmod a+w /tmp/.emodule_loaded_penguins ; fi")
@@ -289,7 +287,7 @@ class EliveWelcome():
             os.system("if zenity --question --text='%s' ; then xdg-open http://www.github.com/Elive/ecomorph/issues ; fi &" % help_compiz_message)
 
         elif value == "help_wikipedia":
-            os.system("xdg-open http://en.wikipedia.org/wiki/Elive")
+            os.system("xdg-open https://forum.elivelinux.org/t/wikipedia-page-of-elive-deleted/1838/")
 
         # elif value == "driver":
             # os.system("mintdrivers &")
