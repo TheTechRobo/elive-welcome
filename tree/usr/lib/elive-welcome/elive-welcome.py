@@ -35,8 +35,6 @@ class EliveWelcome():
                     (key, val, val2) = line.split()
                     val += " " + val2
                 config[key] = val
-                print(key, val)
-            print(config)
 #This would create (on my current version) a dictionary thus:
 #{'kernel': ' 4.19.0-5-amd64', 'date-builded': ' 2019-06-26', 'debian-version': ' buster', 'elive-version': ' 3.7.6', 'stable-release': ' no', 'elive-codename': ' alpha'}
 
