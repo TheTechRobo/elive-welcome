@@ -29,8 +29,12 @@ class EliveWelcome():
         with open("/etc/elive-version") as f:
             for line in f:
                 fixedLine = line.replace(":", "")
-                (key, val) = line.split()
-                d[key] = val
+                try:
+                    (key, val) = line.split()
+                except ValueError as ename:
+                    (key, val, val2) = line.split()
+                    val += " " + val2
+                config[key] = val
 #This would create (on my current version) a dictionary thus:
 #{'kernel': ' 4.19.0-5-amd64', 'date-builded': ' 2019-06-26', 'debian-version': ' buster', 'elive-version': ' 3.7.6', 'stable-release': ' no', 'elive-codename': ' alpha'}
 
